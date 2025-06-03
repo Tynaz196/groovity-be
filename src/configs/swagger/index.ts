@@ -23,10 +23,14 @@ const document: OpenAPIV3.Document = {
         title: "Music Streaming API",
         description: "A complete APIs for a music streaming web app",
         version: "0.0.0"
-    },
-    servers: [
+    },    servers: [
         {
-            url: `http://localhost:${envConfig.PORT}${apiConfig.api}`
+            url: `http://localhost:${envConfig.PORT}${apiConfig.api}`,
+            description: 'Local Development'
+        },
+        {
+            url: 'https://be-groovity-5w4zzkxcn-thuans-projects-a25aed65.vercel.app/api/v1',
+            description: 'Production'
         }
     ],
     paths: {

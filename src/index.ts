@@ -13,18 +13,27 @@ import cors from "cors";
 const app: Express = express();
 
 const startServer = async () => {
-    await connectDbs();
-
-    app.use(
+    await connectDbs();    app.use(
         cors({
             origin: (origin, callback) => {
-                if (!origin || /^http:\/\/localhost:\d+$/.test(origin)) {
+                const allowedOrigins = [
+                    /^http:\/\/localhost:\d+$/,
+                    'https://groovity-fe.vercel.app',
+                    'https://groovity-fe-git-main-thuans-projects-a25aed65.vercel.app',
+                    'https://groovity-fe-thuans-projects-a25aed65.vercel.app'
+                ];
+                if (!origin || allowedOrigins.some(allowed => 
+                    typeof allowed === 'string' 
+                        ? allowed === origin 
+                        : allowed.test(origin)
+                )) {
                     callback(null, true);
                 } else {
                     callback(new Error("Not allowed by CORS"));
                 }
             },
-            credentials: true // if you use cookies or auth headers
+            credentials: true,
+            methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
         })
     );
     app.use(express.json());
