@@ -14,11 +14,12 @@ const app: Express = express();
 
 const startServer = async () => {
     await connectDbs();    app.use(
-        cors({            origin: (origin, callback) => {
+        cors({
+            origin: (origin, callback) => {
                 const allowedOrigins = [
                     /^http:\/\/localhost:\d+$/,
                     'https://groovity-fe.vercel.app',
-                    'https://groovity-g9y3e6h9i-thuans-projects-a25aed65.vercel.app',
+                    /https:\/\/.*?-thuans-projects-a25aed65\.vercel\.app$/,
                     /https:\/\/.*?-thuans-projects-a25aed65\.vercel\.app$/
                 ];
                 if (!origin || allowedOrigins.some(allowed => 
