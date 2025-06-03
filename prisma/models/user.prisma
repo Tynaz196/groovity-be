@@ -1,0 +1,36 @@
+enum Gender {
+    male
+    female
+    others
+}
+
+model User {
+    id          String       @id @default(uuid())
+    username    String       @unique
+    email       String       @unique
+    password    String
+    createdAt   DateTime     @default(now()) @map("created_at")
+    updatedAt   DateTime     @updatedAt @map("updated_at")
+    isVerified  Boolean      @default(false) @map("is_verified")
+    userProfile UserProfile?
+    songs       Song[]
+    albums      Album[]
+    songLikes   SongLike[]
+    albumLikes  AlbumLike[]
+
+    @@map("users")
+}
+
+model UserProfile {
+    id              String   @id @default(uuid())
+    userId          String   @unique @map("user_id")
+    name            String
+    gender          Gender
+    phone           String
+    birth           DateTime
+    avatarImagePath String?  @map("avatar_image_path")
+    user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([name(ops: raw("gin_trgm_ops"))], type: Gin)
+    @@map("user_profiles")
+}

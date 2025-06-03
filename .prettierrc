@@ -1,0 +1,9 @@
+{
+    "singleQuote": false,
+    "trailingComma": "none",
+    "tabWidth": 4,
+    "bracketSpacing": true,
+    "semi": true,
+    "endOfLine": "crlf",
+    "plugins": ["prettier-plugin-prisma"]
+}

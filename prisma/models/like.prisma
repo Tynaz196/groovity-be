@@ -1,0 +1,25 @@
+model SongLike {
+    userId    String
+    songId    String
+    createdAt DateTime @default(now()) @map("created_at")
+
+    user User @relation(fields: [userId], references: [id])
+    song Song @relation(fields: [songId], references: [id])
+
+    @@id([userId, songId])
+    @@index([createdAt])
+    @@map("song_likes")
+}
+
+model AlbumLike {
+    userId    String
+    albumId   String
+    createdAt DateTime @default(now()) @map("created_at")
+
+    user  User  @relation(fields: [userId], references: [id])
+    album Album @relation(fields: [albumId], references: [id])
+
+    @@id([userId, albumId])
+    @@index([createdAt])
+    @@map("album_likes")
+}
