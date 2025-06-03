@@ -18,8 +18,7 @@ const startServer = async () => {
                 const allowedOrigins = [
                     /^http:\/\/localhost:\d+$/,
                     'https://groovity-fe.vercel.app',
-                    'https://groovity-fe-git-main-thuans-projects-a25aed65.vercel.app',
-                    'https://groovity-fe-thuans-projects-a25aed65.vercel.app',
+                    'https://groovity-g9y3e6h9i-thuans-projects-a25aed65.vercel.app',
                     /https:\/\/.*?-thuans-projects-a25aed65\.vercel\.app$/
                 ];
                 if (!origin || allowedOrigins.some(allowed => 

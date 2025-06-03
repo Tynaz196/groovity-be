@@ -5,11 +5,16 @@
       "src": "src/index.ts",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["prisma/**/*"]
+        "includeFiles": ["prisma/**/*"],
+        "buildCommand": "prisma generate && tsc"
       }
     }
   ],
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "src/index.ts"
+    },
     {
       "src": "/(.*)",
       "dest": "src/index.ts"
