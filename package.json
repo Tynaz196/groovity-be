@@ -2,10 +2,9 @@
   "name": "music-streaming-platform-backend",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
-  "scripts": {
+  "type": "module",  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && tsc-alias",
+    "build": "prisma generate && tsc && tsc-alias",
     "start": "node -r tsconfig-paths/register --trace-deprecation dist/index.js",
     "start:dev": "npx nodemon",
     "lint": "npx eslint",
