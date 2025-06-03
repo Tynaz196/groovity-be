@@ -1,0 +1,47 @@
+services:
+  - type: web
+    name: groovity-be
+    env: node
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: cross-env NODE_OPTIONS="--loader ./dist/tsconfig-paths-bootstrap.js" node dist/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: DIRECT_URL
+        sync: false
+      - key: SUPABASE_API_KEY
+        sync: false
+      - key: SUPABASE_PROJECT_URL
+        sync: false
+      - key: REDIS_PASSWORD
+        sync: false
+      - key: REDIS_HOST
+        sync: false
+      - key: REDIS_PORT
+        sync: false
+      - key: PORT
+        value: 3000
+      - key: LOG_LEVEL
+        value: info
+      - key: JWT_ACCESS_SECRET
+        sync: false
+      - key: JWT_REFRESH_SECRET
+        sync: false
+      - key: JWT_ACCESS_EXP
+        value: 15m
+      - key: JWT_REFRESH_EXP
+        value: 30d
+      - key: MAIL_HOST
+        value: smtp.gmail.com
+      - key: MAIL_PORT
+        value: 465
+      - key: MAIL_USER
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: IMAGE_URL_EXP
+        value: 86400
+      - key: MUCSIC_URL_EXP
+        value: 900
